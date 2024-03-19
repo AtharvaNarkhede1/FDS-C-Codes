@@ -1,0 +1,36 @@
+#include<stdio.h>
+void main()
+{
+    int a[10], size, k, i, flag = 0, low = 0, high, mid;
+    printf("Enter the size of Array: ");
+    scanf("%d", &size);
+    printf("Enter %d elements:\n", size);
+    for (i = 0; i < size; i++) {
+        printf("Enter the element at position %d: ", i);
+        scanf("%d", &a[i]);
+    }
+    printf("Enter a key element: ");
+    scanf("%d", &k);
+    high = size - 1;
+    while (low <= high) 
+    {
+        mid = (low + high) / 2;
+        if (a[mid] == k) 
+        {
+            printf("%d element is present at %d position.\n", k, mid);
+            flag = 1;
+            break;
+        } else if (a[mid] < k) 
+        {
+            low = mid + 1;
+        } else 
+        {            
+            high = mid - 1;
+        }
+    }
+
+    if (!flag) 
+    {
+        printf("The given element is not present.\n");
+    }
+}
