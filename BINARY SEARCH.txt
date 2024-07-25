@@ -1,0 +1,42 @@
+#include<stdio.h>
+ #BINERY SEARCH
+int main()
+ {
+     int a[10],i,j,size,flag=0,key,low,high,mid;
+     printf("\nENTER THE SIZE OF ARRAY:");
+     scanf("%d",&size);
+     printf("\nENTER THE DATA IN SORTED FORM:");
+     for(i=0;i<size;i++)
+     {
+         printf("\n a[%d]:",i);
+         scanf("%d",&a[i]);
+     }
+     printf("\nENTER KEY :");
+     scanf("%d",&key);
+     low=0;
+     high=size;
+     mid=(low+high)/2;
+     for(i=0;i<size;i++)
+     {
+         if(key==a[mid])
+         {
+             flag=1;
+             break;
+         }
+         else if(key<a[mid])
+         {
+             high=mid-1;
+         }
+         else
+             low=mid+1;
+            mid=(low+high)/2; 
+     }
+     if(flag==1)
+       {
+         printf("KEY FOUND AT %d POSITION",mid);
+       }
+     else
+         printf("KEY NOT FOUND");
+     
+     return 0;
+ }

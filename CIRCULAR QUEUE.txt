@@ -1,0 +1,91 @@
+#include<stdio.h>
+#define max 7
+int a,i,rear=-1,front=-1;
+int choice;
+int elem;
+int queue[max];
+
+
+void enQueue()
+{
+     
+     
+     if(rear==-1&&front==-1)
+     {
+          rear=0;
+          front=0;
+          printf("Enter the queue element");
+          scanf("%d",&elem);
+          queue[rear]=elem;
+     }
+     
+     else if ((rear+1)%max==front)
+     {
+          printf("queue is full");
+     }
+     
+     else 
+     {
+          rear=(rear+1)%max;
+          printf("Enter the queue element");
+          scanf("%d",&elem);
+          queue[rear]=elem;
+     }
+}
+
+void deQueue()
+{
+     
+     if ((rear+1)==front)
+     {
+          
+          front=-1;
+          rear=-1;
+          printf("queue is empty");
+     }
+     
+     else 
+     {
+         printf("the deleted element is %d, deleted from %d position",queue[front],front);
+         front=(front+1)%max;
+     }
+}
+
+void display()
+{
+     if(rear==-1&&front==-1)
+     {
+          printf("queue is empty");
+     }
+     else
+     {for(i=front;i<=rear;i++)
+          {
+               printf("%d\t",queue[i]);
+          }
+     }
+}
+
+
+void main()
+{
+     do{
+printf("1-enQueue\n2-deQueue\n3-Display\n4-Exit\n Enter your choice!\n");
+scanf("%d",&choice);
+switch(choice)
+  {
+       case 1 :enQueue();
+               break;
+       case 2 :deQueue();
+               break;
+       case 3 :display();
+               break;
+       case 4 :
+               break;
+       default :
+               printf("Enter a valid choice");
+  }
+     printf("Enter 1 to continue!");
+     scanf("%d",&a);
+ }while(a==1);
+
+}

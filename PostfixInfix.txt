@@ -1,0 +1,44 @@
+
+ #include<stdio.h>   
+ #include<conio.h>   
+ #include<string.h>
+ #include<math.h> 
+ #define maxsize 25
+
+    char post[maxsize];
+    int st[maxsize],top=-1;
+    void eval (char post[]);
+
+    void main()   
+	 {             
+	     printf("\n **PROGRAM FOR EVALUATION OF POSTFIX EXPRESSION**\n");
+	     printf("\n ENTER THE EXPRESSION::--");
+	     scanf("%s",post);
+	     eval(post);
+	     getch();
+	 }
+  //FUNCTION FOR EVALUATION OF POSTFIX EXPRESSION
+      void eval( char post[])
+	{
+	 int op1=0,op2=0,i;
+	 for(i=0;post[i]!='\0';i++)
+	  {
+	    if((post[i]<='9')&&(post[i]>='0'))
+		st[++top]=post[i]-48;
+	    else
+	      {
+		 op1=st[top--];
+		 op2=st[top--];
+		 switch(post[i])
+		   {
+		    case '+':st[++top]=op2+op1;break;
+		    case '-':st[++top]=op2-op1;break;
+		    case '*':st[++top]=op2*op1;break;
+		    case '/':st[++top]=op2/op1;break;
+		    case '%':st[++top]=op2%op1;break;
+		    case '^':st[++top]=pow(op2,op1);break;
+		   }
+	      }
+	  }
+	 printf("\n THE ANSWER IS::==>>\t%d",st[top--]);
+	}

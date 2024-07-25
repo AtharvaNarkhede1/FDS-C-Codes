@@ -1,0 +1,28 @@
+#selection sorting code
+#include <stdio.h>
+void main(){
+    int i,j,d,size,temp=0,a[10];
+    printf("Enter the size of array\n");
+    scanf("%d",&size);
+    printf("Enter array elements\n");
+    
+    for(i=0;i<size;i++)
+    {
+        scanf("%d",&a[i]);
+    }
+    for(i=0;i<size;i++)
+    {
+        for(j=i+1;j<size;j++)
+        {
+            if(a[i]>a[j])
+            {
+                temp=a[i];
+                a[i]=a[j];
+                a[j]=temp;
+            }
+        }
+        printf("\nThe sorted array elements in ascending order are:\n");
+        for(d=0;d<size;d++)
+        printf("\t%d",a[d]);
+    }
+}

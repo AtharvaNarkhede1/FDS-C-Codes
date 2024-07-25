@@ -1,0 +1,76 @@
+#include<stdio.h>
+
+#define MAX_SIZE 10
+
+int a[MAX_SIZE];
+int top = -1;
+
+void push() {
+    int choice;
+    if (top == MAX_SIZE - 1)
+    {
+        printf("\tSTACK IS OVERFLOW\n");
+    } 
+    else
+    {
+        top++;
+        printf("\nENTER THE ELEMENT: ");
+        scanf("%d", &choice);
+        a[top] = choice;
+    }
+}
+
+void pop() {
+    if (top == -1)
+    {
+        printf("\tSTACK IS UNDERFLOW\n");
+    }
+    else 
+    {
+        printf("ELEMENT DELETED IS: %d\n", a[top]);
+        top--;
+    }
+}
+
+void display() {
+    if (top == -1)
+    {
+        printf("\tSTACK IS EMPTY\n");
+    }
+    else
+    {
+        printf("\tSTACK CONTENTS:\n");
+        for (int i = top; i >= 0; i--)
+        {
+            printf("\t%d", a[i]);
+        }
+    }
+}
+
+int main() {
+    int ch;
+    printf("\t\tSTACK:");
+    do {
+        printf("\nENTER YOUR CHOICE\n1.PUSH\n2.POP\n3.DISPLAY\n4.EXIT: ");
+        scanf("%d", &ch);
+        switch(ch) {
+            case 1:
+                push();
+                break;
+            case 2:
+                pop();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("\tEXIT\n");
+                break;
+            default:
+                printf("\tInvalid choice\n");
+                break;
+        }
+    } while(ch != 4);
+
+    return 0;
+}

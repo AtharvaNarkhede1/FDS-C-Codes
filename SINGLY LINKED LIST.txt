@@ -1,0 +1,151 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node {
+    int data;
+    struct node *next;
+};
+
+struct node *head, *newnode, *temp;
+
+void insertatfirst() {
+    newnode = malloc(sizeof(struct node));
+    printf("enter the data ");
+    scanf("%d", &newnode->data);
+    newnode->next = head;
+    head = newnode;
+}
+
+void insertatlast() {
+    newnode = malloc(sizeof(struct node));
+    printf("enter the data ");
+    scanf("%d", &newnode->data);
+
+    temp = head;
+    while (temp->next != NULL) {
+        temp = temp->next;
+    }
+    temp->next = newnode;
+    newnode->next = NULL;
+}
+
+void insertatposition() {
+    int pos;
+    int j = 1, count = 0;
+    printf("Enter the position after which you want to insert the node");
+    scanf("%d", &pos);
+    temp = head;
+    while (temp != NULL) {
+        temp = temp->next;
+        count++;
+    }
+    if (pos > count) {
+        printf("invalid");
+    } else {
+        temp = head;
+        while (j < pos) {
+            temp = temp->next;
+            j++;
+        }
+    }
+    newnode = malloc(sizeof(struct node));
+    printf("enter the data ");
+    scanf("%d", &newnode->data);
+    newnode->next = temp->next;
+    temp->next = newnode;
+}
+
+void deletefirst() {
+    if (head == NULL) {
+        printf("SLL is full");
+    } else {
+        temp = head;
+        head = head->next;
+        free(temp);
+    }
+}
+
+void deletelast() {
+    struct node *prevnode;
+    temp = head;
+    while (temp->next != NULL) {
+        prevnode = temp;
+        temp = temp->next;
+    }
+    prevnode->next = NULL;
+    free(temp);
+}
+
+void deleteatposition() {
+    int pos;
+    int i = 1;
+    printf("Enter the position from where you want to delete the node");
+    scanf("%d", &pos);
+    struct node *nextnode;
+    temp = head;
+    while (i < pos - 1) {
+        temp = temp->next;
+        i++;
+    }
+    nextnode = temp->next;
+    temp->next = nextnode->next;
+    free(nextnode);
+}
+
+void display() {
+    temp = head;
+    while (temp != NULL) {
+        printf("%d ", temp->data);
+        temp = temp->next;
+    }
+}
+
+void main() {
+    head = NULL;
+    int choice = 1, n, ch;
+    printf("Enter number of time you want to insert the data for linked list");
+    scanf("%d", &n);
+    for (int i = 0; i < n; i++) {
+        newnode = malloc(sizeof(struct node));
+        printf("\nEnter data: ");
+        scanf("%d", &newnode->data);
+        newnode->next = NULL;
+        if (head == NULL) {
+            head = temp = newnode;
+        } else {
+            temp->next = newnode;
+            temp = newnode;
+        }
+    }
+    do {
+        printf("\n1.Insert at Start\n2.Insert at Last\n3.Insert at position\n4.Delete at First\n5.Delete at Last\n6.Delete at position\n7.Display\n");
+        scanf("%d", &ch);
+        switch (ch) {
+            case 1:
+                insertatfirst();
+                break;
+            case 2:
+                insertatlast();
+                break;
+            case 3:
+                insertatposition();
+                break;
+            case 4:
+                deletefirst();
+                break;
+            case 5:
+                deletelast();
+                break;
+            case 6:
+                deleteatposition();
+                break;
+            case 7:
+                display();
+                break;
+            default:
+                printf("Invalid choice!\n");
+        } printf("\nDo you want to continue? Press 1 for yes: ");
+        scanf("%d", &ch);
+    } while (ch == 1);
+
+}

@@ -1,0 +1,89 @@
+#LINEAR QUEUE
+#include <stdio.h>
+#define max 5
+
+int queue[max];
+int rear = -1;
+int front = -1;
+int i, ele;
+
+void enqueue(int ele) {
+    if ((rear == max - 1 && front == 0) || (rear + 1 == front)) {
+        printf("Queue full\n");
+    } else {
+        if (rear == max - 1 && front != 0)
+            rear = -1;
+        if (front == -1)
+            front = 0;
+        rear = (rear + 1) % max;
+        queue[rear] = ele;
+        printf("Element enqueued: %d\n", ele);
+    }
+}
+
+int dequeue() {
+    if (front == -1) {
+        printf("Queue is empty\n");
+        return -1;
+    } else {
+        ele = queue[front];
+        if (front == rear)
+            front = rear = -1;
+        else
+            front = (front + 1) % max;
+        printf("Element dequeued: %d\n", ele);
+        return ele;
+    }
+}
+
+void display() {
+    if (front == -1) {
+        printf("Queue is empty\n");
+    } else {
+        printf("Queue elements: ");
+        if (rear >= front) {
+            for (i = front; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+        } else {
+            for (i = front; i < max; i++) {
+                printf("%d ", queue[i]);
+            }
+            for (i = 0; i <= rear; i++) {
+                printf("%d ", queue[i]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int choice;
+    do {
+        printf("1. Enqueue (insertion)\n");
+        printf("2. Dequeue (deletion)\n");
+        printf("3. Display\n");
+        printf("4. Exit\n");
+        printf("Enter your choice: ");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                printf("Enter the element to insert (enqueue): ");
+                scanf("%d", &ele);
+                enqueue(ele);
+                break;
+            case 2:
+                dequeue();
+                break;
+            case 3:
+                display();
+                break;
+            case 4:
+                printf("Exiting...\n");
+                break;
+            default:
+                printf("Invalid choice\n");
+        }
+    } while (choice != 4);
+    return 0;
+}

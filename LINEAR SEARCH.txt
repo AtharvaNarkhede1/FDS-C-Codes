@@ -1,0 +1,32 @@
+#linear search
+#include <stdio.h>
+
+int main()
+{
+   int a[10];
+   int size,key,i,flag=0;
+   printf("enter size of array");
+   scanf("%d",&size);
+   printf("enter %d element\n",size);
+   for(i=0;i<size;i++)
+   {
+    printf("enter element at %d position\n",i);
+    scanf("%d",&a[i]);
+   }
+   printf("enter a key element \n");
+   scanf("%d",&key);
+   for(i=0;i<size;i++)
+   {
+    if (a[i]==key)
+    {
+    printf("%dis present at %d position\n",a[i],i);
+    flag=1;
+    }
+   }
+    if(!flag)
+   {
+     printf("element is not available");
+   }
+   
+    return 0;
+}

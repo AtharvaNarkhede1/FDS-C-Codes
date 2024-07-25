@@ -1,0 +1,35 @@
+#includestdio.h
+#includestdlib.h
+struct Node
+{
+    int data;
+    struct Node next;
+};
+
+void main()
+{
+    struct Node  temp;
+    struct Node  head,one,two,three, newNode;
+    head=NULL;
+    one=(struct Node  )malloc(sizeof(struct Node));
+    two=(struct Node  )malloc(sizeof(struct Node));
+    three=(struct Node  )malloc(sizeof(struct Node));
+    newNode=(struct Node  )malloc(sizeof(struct Node));
+    
+    one-data=10;
+    two-data=1;
+    three-data=4;
+    newNode-data=40;
+    
+    one-next=two;
+    two-next=three;
+    three-next=NULL;
+    newNode-next=one;
+    head=newNode;
+    temp=head;
+    while(temp!=NULL)
+    {
+    printf(%dn,temp-data);
+    temp=temp-next;
+    }
+}

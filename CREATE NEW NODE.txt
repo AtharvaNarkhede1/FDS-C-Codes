@@ -1,0 +1,40 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    int data;
+    struct node *next;
+};
+
+void main()
+{
+    struct node *head, *newNode, *temp;
+    int ch;
+    head = NULL;
+    do
+    {
+        newNode=malloc(sizeof(struct node));
+        printf("enter the value");
+        scanf("%d", &newNode->data);
+        newNode->next=NULL;
+        if(head==NULL)
+        {
+            head=newNode;
+            temp=newNode;
+        }
+        else
+        {
+            temp->next=newNode;
+            temp=newNode;
+        }
+        printf("do you want to insert again? press 1 if so: ");
+        scanf("%d",&ch);
+    }
+    while (ch==1);
+    temp=head;
+    while(temp!=NULL)
+    {
+        printf("%d",temp->data);
+        temp=temp->next;
+    }
+}

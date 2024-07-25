@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct Node
+{
+    int data;
+    struct Node *next;
+};
+
+void main()
+{
+    struct Node * temp;
+    struct Node * head,*one,*two,*three;
+    head=NULL;
+    one=(struct Node * )malloc(sizeof(struct Node));
+    two=(struct Node * )malloc(sizeof(struct Node));
+    three=(struct Node * )malloc(sizeof(struct Node));
+    
+    one->data=10;
+    two->data=1;
+    three->data=4;
+    
+    one->next=two;
+    two->next=three;
+    three->next=NULL;
+    head=one;
+    temp=head;
+    while(temp!=NULL)
+    {
+    printf("%d\n",temp->data);
+    temp=temp->next;
+    }
+}
