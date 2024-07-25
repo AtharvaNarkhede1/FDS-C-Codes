@@ -1,0 +1,112 @@
+//employee database
+#include<stdio.h>
+#include<string.h>
+struct employee{
+    char empName[100];
+    int empId;
+};
+void main()
+{
+    struct employee e[5];
+    int i,c,d,m,id,f=0,g=0,a,h=0;
+    char name[100];
+    do{printf("1.Insert data\n2.Display data\n3.Update data\n4.Delete data\nEnter choice : ");
+    scanf("%d",&c);
+    switch(c)
+    {
+        case 1:
+              printf("\nEnter no.of employee : ");
+              scanf("%d",&d);
+              for(i=0;i<d;i++)
+              {
+                  printf("\nEnter name : ");
+                  scanf("%s",e[i].empName);
+                  printf("\nEnter ID : ");
+                  scanf("%d",&e[i].empId);
+                  printf("This has been updated.\n");
+              }
+              break;
+        case 2:
+              for(i=0;i<d;i++)
+              {
+                  printf("\n\nName : %s\nID : %d",e[i].empName,e[i].empId);
+              }
+              break;
+        case 3:
+              printf("\n1.Search by ID\n2.Search by name\nEnter choice : ");
+              scanf("%d",&m);
+              switch(m)
+              {
+                  case 1://by id
+                        printf("\nEnter Id : ");
+                        scanf("%d",&id);
+                        for(i=0;i<d;i++)
+                        {
+                            if(id==e[i].empId)
+                            {
+                                h=1;
+                                break;
+                            }
+                        }
+                        if(h==1)
+                        {
+                            printf("\nEnter new ID : ");
+                            scanf("%d",&e[i].empId);
+                            printf("This has been updated.\n");
+                        }else
+                        {
+                            printf("\nInvalid number");
+                        }
+                        break;
+                case 2:
+                        printf("\nEnter name : ");
+                        scanf("%s",name);
+                        for(i=0;i<d;i++)
+                        {
+                            if(strcmp(name,e[i].empName)==0)
+                            
+                            {
+                                g=1;
+                                break;
+                            }
+                           
+                        }
+                        if(g==1)
+                        {
+                            printf("\nEnter new name : ");
+                            scanf("%s",e[i].empName);
+                            printf("This has been updated.\n");
+                        }else
+                        {
+                            printf("\nInvalid Name");
+                        }
+              }
+              break;
+            case 4:
+                  printf("\nEnter Id : ");
+                  scanf("%d",&id);
+                  for(i=0;i<d;i++)
+                  {
+                      if(id==e[i].empId)
+                      {
+                          f=1;
+                          break;
+                      }
+                    
+                  }
+                  if(f==1)
+                  {
+                      for(a=i;a<d;a++)
+                      {
+                          e[a].empId=e[a+1].empId;
+                          strcpy(e[a].empName,e[a+1].empName);
+                      }d--;
+                      printf("This has been deleted.\n");
+                  }else{
+                      printf("\nInvalid Id");
+                  }
+    }
+    printf("\nDo you want to continue ?Press 1 for yes.");
+    scanf("%d",&c);
+    }while(c==1);
+}
